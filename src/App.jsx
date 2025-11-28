@@ -4,7 +4,7 @@ export default function App() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
 
-  // Load tasks from localStorage on first render
+  // Load tasks from localStorage
   useEffect(() => {
     try {
       const stored = localStorage.getItem("pd-tasks");
@@ -19,7 +19,7 @@ export default function App() {
     }
   }, []);
 
-  // Save tasks whenever they change
+  // Save tasks when they change
   useEffect(() => {
     try {
       localStorage.setItem("pd-tasks", JSON.stringify(tasks));
@@ -59,8 +59,8 @@ export default function App() {
         <button className="mode-toggle">Light / Dark</button>
       </header>
 
-      <main className="app-grid">
-        {/* LEFT – weekly calendar */}
+      <main className="app-grid-areas">
+        {/* TOP LEFT – weekly calendar */}
         <section className="card weekly-card">
           <h2>Weekly Goals</h2>
           <p className="gold-note">Every day is worth gold — spend it wisely.</p>
@@ -74,8 +74,8 @@ export default function App() {
           </div>
         </section>
 
-        {/* CENTER – stats */}
-        <section className="card">
+        {/* TOP RIGHT – stats */}
+        <section className="card stats-card">
           <h2>Streaks & Stats</h2>
           <div className="stats-row">
             <div className="stat-block">
@@ -93,8 +93,8 @@ export default function App() {
           </div>
         </section>
 
-        {/* RIGHT – tasks */}
-        <section className="card">
+        {/* BOTTOM – tasks (spans full width) */}
+        <section className="card tasks-card">
           <h2>Today&apos;s Tasks</h2>
           <div className="tasks-input-row">
             <input
@@ -109,6 +109,7 @@ export default function App() {
               Add
             </button>
           </div>
+
           <ul className="tasks-list">
             {tasks.length === 0 && (
               <li className="task-item">
