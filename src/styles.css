@@ -1,14 +1,10 @@
 :root {
-  --bg-light: #f5f6fa;
-  --bg-dark: #0e0e11;
-  --card-light: #ffffff;
+  --bg-dark: #050509;
   --card-dark: #16161a;
-  --text-light: #222222;
-  --text-dark: #e8e8e8;
-  --accent-gold: #d1b464;
-  --accent-gold-soft: rgba(209, 180, 100, 0.35);
-  --border-soft: rgba(255, 255, 255, 0.06);
-  --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.08);
+  --text-main: #f3f3f3;
+  --gold: #d1b464;
+  --gold-soft: rgba(209, 180, 100, 0.35);
+  --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.18);
 }
 
 * {
@@ -21,19 +17,21 @@ body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
     "San Francisco", "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top, #11121a, #050509);
-  color: var(--text-dark);
+  background: radial-gradient(circle at top, #14141f, var(--bg-dark));
+  color: var(--gold);
 }
 
 .app {
   min-height: 100vh;
-  max-width: 1080px;
+  max-width: 1120px;
   margin: 0 auto;
   padding: 32px 20px 40px;
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
+
+/* HEADER */
 
 .app-header {
   display: flex;
@@ -43,63 +41,101 @@ body {
 }
 
 .identity h1 {
-  font-size: 24px;
-  letter-spacing: 0.08em;
+  font-size: 26px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: var(--text-main); /* keep main title NOT gold */
 }
 
 .underline {
   display: block;
   margin-top: 6px;
-  width: 120px;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    var(--accent-gold),
-    rgba(209, 180, 100, 0.15)
-  );
+  width: 140px;
+  height: 2px;
+  background: linear-gradient(to right, var(--gold), transparent);
 }
 
 .mode-toggle {
   padding: 8px 16px;
   border-radius: 999px;
-  border: 1px solid var(--border-soft);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(20, 20, 26, 0.9);
-  color: var(--text-dark);
-  font-size: 13px;
-  letter-spacing: 0.08em;
+  color: var(--text-main);
+  font-size: 12px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
-  backdrop-filter: blur(14px);
 }
 
-.mode-toggle:hover {
-  border-color: var(--accent-gold);
-}
+/* GRID LAYOUT */
 
 .app-grid {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 2fr) minmax(0, 1.6fr);
-  gap: 18px;
+  grid-template-columns: 2.1fr 1.5fr 1.6fr; /* left = biggest */
+  gap: 20px;
 }
 
+/* CARDS */
+
 .card {
-  background: radial-gradient(circle at top left, #202029, #13131a);
+  background: radial-gradient(circle at top left, #202029, #101018);
   border-radius: 18px;
   padding: 18px 18px 20px;
   box-shadow: var(--shadow-soft);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
+.weekly-card {
+  min-height: 420px;
+}
+
 .card h2 {
   font-size: 15px;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: rgba(232, 232, 232, 0.86);
+  letter-spacing: 0.18em;
+  color: var(--text-main); /* section titles stay light */
 }
+
+/* WEEKLY CALENDAR */
+
+.gold-note {
+  font-size: 13px;
+  margin-top: 4px;
+  color: var(--gold);
+}
+
+.week-grid {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.day-cell {
+  padding: 14px 12px;
+  border-radius: 14px;
+  background: rgba(10, 10, 16, 0.96);
+  border: 1px solid var(--gold-soft);
+  box-shadow: 0 0 24px rgba(209, 180, 100, 0.15);
+}
+
+.day-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+}
+
+.day-goal {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--gold);
+}
+
+/* TASKS */
 
 .tasks-input-row {
   display: flex;
@@ -111,40 +147,32 @@ body {
   flex: 1;
   padding: 9px 11px;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   background: rgba(8, 8, 12, 0.9);
-  color: var(--text-dark);
+  color: var(--gold);
   font-size: 13px;
 }
 
 .text-input::placeholder {
-  color: rgba(180, 180, 190, 0.7);
+  color: rgba(209, 180, 100, 0.65);
 }
 
 .text-input:focus {
   outline: none;
-  border-color: var(--accent-gold);
+  border-color: var(--gold);
 }
 
 .primary-button {
   padding: 9px 14px;
   border-radius: 12px;
   border: none;
-  background: linear-gradient(
-    120deg,
-    var(--accent-gold),
-    rgba(209, 180, 100, 0.7)
-  );
+  background: linear-gradient(120deg, var(--gold), rgba(209, 180, 100, 0.7));
   color: #111015;
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
-}
-
-.primary-button:hover {
-  filter: brightness(1.03);
 }
 
 .tasks-list {
@@ -162,38 +190,14 @@ body {
   align-items: center;
   gap: 8px;
   font-size: 13px;
-  padding: 6px 8px;
+  padding: 7px 9px;
   border-radius: 10px;
-  background: rgba(12, 12, 18, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.02);
+  background: rgba(12, 12, 18, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--gold);
 }
 
-.week-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 8px;
-  margin-top: 6px;
-}
-
-.day-cell {
-  padding: 10px 9px;
-  border-radius: 12px;
-  background: rgba(12, 12, 18, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.day-label {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: rgba(180, 180, 190, 0.9);
-}
-
-.day-goal {
-  margin-top: 4px;
-  font-size: 13px;
-  color: rgba(232, 232, 232, 0.9);
-}
+/* STATS */
 
 .stats-row {
   display: flex;
@@ -206,26 +210,32 @@ body {
   padding: 9px 10px;
   border-radius: 12px;
   background: radial-gradient(circle at top left, #1e1e26, #101019);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  box-shadow: 0 0 0 1px rgba(209, 180, 100, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 1px rgba(209, 180, 100, 0.18);
 }
 
 .stat-label {
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: rgba(176, 176, 186, 0.9);
+  letter-spacing: 0.14em;
+  color: var(--gold);
 }
 
 .stat-value {
   margin-top: 4px;
   font-size: 18px;
   font-weight: 600;
-  color: var(--accent-gold);
+  color: var(--gold);
 }
+
+/* RESPONSIVE */
 
 @media (max-width: 900px) {
   .app-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .weekly-card {
+    min-height: auto;
   }
 }
