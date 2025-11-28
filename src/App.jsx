@@ -74,4 +74,12 @@ export default function App() {
               <div className="stat-value">0</div>
             </div>
             <div className="stat-block">
-              <div className="stat-label">Hours f
+              <div className="stat-label">Hours focused this week</div>
+              <div className="stat-value">0.0</div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}
