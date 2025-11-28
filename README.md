@@ -2,7 +2,8 @@
 
 A minimal React + Vite productivity dashboard with a gold/black aesthetic.
 
-Live demo: https://YOUR-USERNAME.github.io/Productivity-Dashboard
+Live demo: https://NedyCLips.github.io/Productivity-Dashboard
+
 
 ## Features
 
