@@ -44,7 +44,7 @@ body {
   font-size: 26px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-main); /* keep main title NOT gold */
+  color: var(--text-main); /* title not gold */
 }
 
 .underline {
@@ -67,12 +67,29 @@ body {
   cursor: pointer;
 }
 
-/* GRID LAYOUT */
+/* GRID LAYOUT – calendar left, stats right, tasks full width */
 
-.app-grid {
+.app-grid-areas {
   display: grid;
-  grid-template-columns: 2.1fr 1.5fr 1.6fr; /* left = biggest */
+  grid-template-columns: 2.1fr 1.5fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "weekly stats"
+    "tasks  tasks";
   gap: 20px;
+}
+
+.weekly-card {
+  grid-area: weekly;
+  min-height: 360px;
+}
+
+.stats-card {
+  grid-area: stats;
+}
+
+.tasks-card {
+  grid-area: tasks;
 }
 
 /* CARDS */
@@ -88,15 +105,11 @@ body {
   gap: 14px;
 }
 
-.weekly-card {
-  min-height: 420px;
-}
-
 .card h2 {
   font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: var(--text-main); /* section titles stay light */
+  color: var(--text-main); /* section titles light */
 }
 
 /* WEEKLY CALENDAR */
@@ -119,7 +132,7 @@ body {
   border-radius: 14px;
   background: rgba(10, 10, 16, 0.96);
   border: 1px solid var(--gold-soft);
-  box-shadow: 0 0 24px rgba(209, 180, 100, 0.15);
+  box-shadow: 0 0 24px rgba(209, 180, 100, 0.2);
 }
 
 .day-label {
@@ -231,8 +244,12 @@ body {
 /* RESPONSIVE */
 
 @media (max-width: 900px) {
-  .app-grid {
+  .app-grid-areas {
     grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "weekly"
+      "stats"
+      "tasks";
   }
 
   .weekly-card {
